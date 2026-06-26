@@ -3,16 +3,22 @@
 The goal of this project was to implement a highly usable, web-based digital yearbook. Unlike a static 
 archive, this yearbook focuses on interactive memory-sharing, emphasizing engagement, accessibility, 
 and emotional connection. 
+    
     • Engagement: Using modern UI trends like glassmorphism and vibrant gradients to appeal to 
 students 
+    
     • Accessibility: Providing multiple ways to access information, including a search-driven 
 Profile Explorer and a categorized Memory Map 
+    
     • Interactive Storytelling: Features like the Time Capsule and Memory Weaver allow users to 
 contribute and interact with content rather than just consuming it. 
 
+
 2. Implementation Overview 
+    
     • Navigation & Layout: A clear hierarchy is established starting with a secure login screen and 
 an animated front cover. The Yearbook Index acts as a central hub for all major features 
+    
     • Profile Explorer: Features a card-based layout with real-time filtering and a search bar to 
 reduce user memory load 
     • Time Capsule: Allows users to submit reflective entries, emphasizing shared emotional 
