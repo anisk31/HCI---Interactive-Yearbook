@@ -21,8 +21,10 @@ an animated front cover. The Yearbook Index acts as a central hub for all major 
     
     • Profile Explorer: Features a card-based layout with real-time filtering and a search bar to 
 reduce user memory load 
+    
     • Time Capsule: Allows users to submit reflective entries, emphasizing shared emotional 
 experience 
+    
     • AI Features Integration: To enhance emotional engagement and personalization, several AI
 simulated features were integrated: 
           o Memory Weaver (Main AI Feature)  
