@@ -1,0 +1,3772 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinta Warisan Yearbook - Class of 2019</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #dbeafe 0%, #f3e8ff 50%, #fce7f3 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header h2 {
+            font-size: 1.5em;
+            font-weight: 300;
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .icon {
+            font-size: 1.6rem;
+            color: #c27aff;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #c27aff, #fb64b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #homeView {
+            background: linear-gradient(135deg, #dbeafe 0%, #f3e8ff 50%, #fce7f3 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .nav-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .nav-btn {
+            background: white;
+            border: none;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #667eea;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            background: #667eea;
+            color: white;
+        }
+
+        .content {
+            padding: 30px;
+            min-height: auto;
+        }
+
+        #memoryMapView, #memorabiliaView, #profileExplorerView, #timeCapsuleView, #commentsView, #userProfileView {
+            background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 50%, #fef3f8 100%);
+            min-height: 100vh;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .person-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .person-card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .person-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .person-card-image-container {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #e0d4f7 0%, #f0e6ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .person-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+
+        .person-card-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .person-card h3 {
+            color: #2d2d2d;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .person-card .person-type {
+            color: #9b87c7;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .person-card .person-detail {
+            color: #c084fc;
+            font-size: 0.85em;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .person-card .person-activity {
+            color: #a78bfa;
+            font-size: 0.85em;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px 20px;
+            padding-left: 45px;
+            font-size: 1em;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            background: white;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>');
+            background-repeat: no-repeat;
+            background-position: 15px center;
+            background-size: 18px;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #a78bfa;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 10px 24px;
+            border-radius: 25px;
+            border: none;
+            background: white;
+            color: #6b7280;
+            font-size: 0.95em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-tab:hover {
+            background: #f3f4f6;
+        }
+
+        .filter-tab.active {
+            background: #a78bfa;
+            color: white;
+        }
+
+        .profile-explorer-container {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .profile-explorer-main {
+            flex: 1;
+        }
+
+        .profile-explorer-sidebar {
+            width: 420px;
+            flex-shrink: 0;
+        }
+
+        .find-friends-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            width: 100%;
+        }
+
+        .find-friends-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            opacity: 0.6;
+        }
+
+        .find-friends-title {
+            color: #a78bfa;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .find-friends-description {
+            color: #6b7280;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .stat-box {
+            background: #faf5ff;
+            border-radius: 15px;
+            padding: 20px;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #a78bfa;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.85em;
+        }
+
+        .people-count {
+            color: #6b7280;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .back-button {
+            background: #a78bfa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #9270db;
+            transform: translateX(-2px);
+        }
+
+        @media (max-width: 968px) {
+            .profile-explorer-container {
+                flex-direction: column;
+            }
+            
+            .profile-explorer-sidebar {
+                width: 100%;
+            }
+        }
+
+        /* Profile Detail View Styles */
+        #detailView {
+            background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 50%, #fef3f8 100%);
+            min-height: 100vh;
+        }
+
+        .profile-modal-overlay {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #e0d4f7 0%, #f0e6ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 5px solid #f5f0ff;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            color: #a78bfa;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .profile-role {
+            color: #9ca3af;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+
+        .profile-quote {
+            background: linear-gradient(135deg, #faf5ff 0%, #fef3f8 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            font-style: italic;
+            color: #6b7280;
+            font-size: 0.95em;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .profile-info-section {
+            margin-bottom: 20px;
+        }
+
+        .profile-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            background: #fafafa;
+        }
+
+        .profile-info-item.company {
+            background: linear-gradient(135deg, #fef3f8 0%, #fef9f3 100%);
+        }
+
+        .profile-info-item.hobby {
+            background: linear-gradient(135deg, #fef3f8 0%, #fef3f8 100%);
+        }
+
+        .profile-info-item.location {
+            background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+        }
+
+        .profile-info-item.birthday {
+            background: linear-gradient(135deg, #fef3f8 0%, #fcf3ff 100%);
+        }
+
+        .profile-info-icon {
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+
+        .profile-info-content {
+            flex: 1;
+        }
+
+        .profile-info-label {
+            font-size: 0.75em;
+            color: #9ca3af;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .profile-info-value {
+            color: #2d2d2d;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .contact-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .contact-icon {
+            color: #60a5fa;
+            font-size: 1.2em;
+        }
+
+        .contact-content {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.75em;
+            color: #9ca3af;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .contact-value {
+            color: #2d2d2d;
+            font-size: 0.9em;
+        }
+
+        .then-now-section {
+            margin-bottom: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fef3f8 0%, #fff7ed 100%);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 35px;
+            top: 60px;
+            bottom: -15px;
+            width: 2px;
+            background: linear-gradient(180deg, #fb64b6 0%, transparent 100%);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-icon {
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-label {
+            font-size: 0.75em;
+            color: #fb64b6;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .timeline-text {
+            color: #2d2d2d;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .signature-section {
+            background: white;
+            border: 2px dashed #e5e7eb;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .signature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .signature-title {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .write-message-btn {
+            background: #a78bfa;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+
+        .write-message-btn:hover {
+            background: #9270db;
+        }
+
+        .signature-label {
+            font-size: 0.85em;
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+
+        .signature-content {
+            background: linear-gradient(135deg, #fef3f8 0%, #fef9f3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .signature-text {
+            color: #a78bfa;
+            font-size: 1.1em;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .signature-emoji {
+            font-size: 1.5em;
+        }
+
+        .close-profile-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: #f3f4f6;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #9ca3af;
+            transition: all 0.3s;
+        }
+
+        .close-profile-btn:hover {
+            background: #e5e7eb;
+            color: #6b7280;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .comment-section {
+            margin-top: 30px;
+        }
+
+        .comment {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .comment-text {
+            color: #333;
+        }
+
+        .comment-date {
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .memorabilia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .memorabilia-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .memorabilia-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .memorabilia-item h3 {
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .profile-explorer-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(90deg, #c27aff, #fb64b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .detail-view {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .detail-view img {
+            max-width: 300px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .detail-view h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .detail-view p {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .status-message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #dbeafe 0%, #f3e8ff 50%, #fce7f3 100%);
+        color: white;
+    ">
+        <div style="
+            background: white;
+            color: #333;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        ">
+            <h2 class="title">
+                <span class="icon">🔒</span>
+                <span class="gradient-text">Tinta Warisan</span>
+            </h2>
+
+            <input type="text" id="username" placeholder="Username" style="
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                border-radius: 8px;
+                border: 2px solid #e9d4ff;
+                font-size: 1em;
+            ">
+            <input type="password" id="password" placeholder="Password" style="
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                border: 2px solid #e9d4ff;
+                font-size: 1em;
+            ">
+            <button onclick="checkLogin()" style="
+                background: linear-gradient(#dab2ff 0%, #fda5d5 100%);
+                color: white;
+                border: none;
+                padding: 12px 30px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 1em;
+                font-weight: bold;
+            ">Login</button>
+            <p id="loginError" style="color: red; margin-top: 15px; display: none;">Invalid username or password.</p>
+        </div>
+    </div>
+    <!-- Front Page -->
+    <div id="frontPage" style="
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #fadadd 0%, #e0c3fc 50%, #c3e0fc 100%);
+        position: relative;
+        overflow: hidden;
+    ">
+        <!-- Decorative sparkles -->
+        <span style="position: absolute; top: 30%; left: 35%; font-size: 2em; animation: float 3s ease-in-out infinite;">✨</span>
+        <span style="position: absolute; top: 40%; right: 30%; font-size: 1.5em; animation: float 4s ease-in-out infinite 1s;">🎓</span>
+        
+        <div style="
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        ">
+            <!-- Graduation Cap Icon -->
+            <div style="
+                width: 120px;
+                height: 120px;
+                margin: 0 auto 30px;
+                background: linear-gradient(135deg, #e0b3ff 0%, #d4a5ff 100%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 10px 40px rgba(224, 179, 255, 0.4);
+                border: 4px solid white;
+            ">
+                <span style="font-size: 3.5em;">🎓</span>
+            </div>
+            
+            <!-- Title -->
+            <h1 style="
+                font-size: 4em;
+                margin-bottom: 15px;
+                background: linear-gradient(90deg, #c27aff, #fb64b6);
+                /* background: linear-gradient(135deg, #c77dff 0%, #9d4edd 100%); */
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-weight: 700;
+                letter-spacing: 2px;
+            ">Class of 2026</h1>
+            
+            <!-- Subtitle -->
+            <p style="
+                font-size: 1.3em;
+                color: #9d4edd;
+                margin-bottom: 10px;
+                font-weight: 500;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+            ">MEMORIES FOREVER</p>
+            
+            <!-- School Name -->
+            <p style="
+                font-size: 1.1em;
+                color: #666;
+                margin-bottom: 40px;
+            ">VLAST College 🎓</p>
+            
+            <!-- Click to Open Button -->
+            <button onclick="goToLogin()" style="
+                background: linear-gradient(135deg, #dab2ff 0%, #fda5d5 100%);
+                color: white;
+                border: none;
+                padding: 15px 40px;
+                border-radius: 30px;
+                cursor: pointer;
+                font-size: 1.1em;
+                font-weight: 600;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                box-shadow: 0 5px 20px rgba(199, 125, 255, 0.4);
+                transition: all 0.3s;
+            " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(199, 125, 255, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(199, 125, 255, 0.4)'">
+                📖 Click to open
+            </button>
+        </div>
+        
+        <style>
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0px);
+                }
+                50% {
+                    transform: translateY(-20px);
+                }
+            }
+        </style>
+    </div>
+    <div id="mainContent" class="container hidden">
+        <div class="header">
+            <h1 class="gradient-text" style="font-size: 3em;">Tinta Warisan</h1>
+            <h2 class="gradient-text">Class of 2019 Yearbook</h2>
+        </div>
+
+        <!-- Home/Main Menu -->
+        <div id="homeView" class="content">
+            <div style="
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 40px;
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            ">
+                <!-- Left Page - Yearbook Index -->
+                <div style="
+                    flex: 1;
+                    background: white;
+                    border-radius: 20px;
+                    padding: 40px 30px;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                    min-height: 400px;
+                ">
+                    <h2 style="
+                        text-align: center;
+                        background: linear-gradient(90deg, #c27aff, #fb64b6);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        font-size: 1.8em;
+                        margin-bottom: 30px;
+                    ">Yearbook Index</h2>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <button onclick="showView('memoryMap')" style="
+                            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+                            color: white;
+                            border: none;
+                            padding: 18px 25px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            transition: all 0.3s;
+                            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+                        " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(59, 130, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(59, 130, 246, 0.3)'">
+                            <span style="font-size: 1.3em;">🗺️</span>
+                            <span>Memory Map</span>
+                        </button>
+                        
+                        <button onclick="showView('memorabilia')" style="
+                            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+                            color: white;
+                            border: none;
+                            padding: 18px 25px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            transition: all 0.3s;
+                            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+                        " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(168, 85, 247, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(168, 85, 247, 0.3)'">
+                            <span style="font-size: 1.3em;">🎁</span>
+                            <span>Memorabilia</span>
+                        </button>
+                        
+                        <button onclick="showView('profileExplorer')" style="
+                            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+                            color: white;
+                            border: none;
+                            padding: 18px 25px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            transition: all 0.3s;
+                            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+                        " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(249, 115, 22, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(249, 115, 22, 0.3)'">
+                            <span style="font-size: 1.3em;">👤</span>
+                            <span>Profile Explorer</span>
+                        </button>
+                    </div>
+                    
+                    <p style="
+                        text-align: center;
+                        color: #999;
+                        margin-top: 30px;
+                        font-size: 0.95em;
+                    ">Explore your memories, one page at a time 📖</p>
+                </div>
+                
+                <!-- Right Page - More Features -->
+                <div style="
+                    flex: 1;
+                    background: white;
+                    border-radius: 20px;
+                    padding: 40px 30px;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                    min-height: 400px;
+                ">
+                    <h2 style="
+                        text-align: center;
+                        background: linear-gradient(90deg, #c27aff, #fb64b6);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        font-size: 1.8em;
+                        margin-bottom: 30px;
+                    ">More Features</h2>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <button onclick="showView('timeCapsule')" style="
+                            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                            color: white;
+                            border: none;
+                            padding: 18px 25px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            transition: all 0.3s;
+                            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+                        " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(16, 185, 129, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(16, 185, 129, 0.3)'">
+                            <span style="font-size: 1.3em;">⏰</span>
+                            <span>Time Capsule</span>
+                        </button>
+                        
+                        <button onclick="showView('comments')" style="
+                            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+                            color: white;
+                            border: none;
+                            padding: 18px 25px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            transition: all 0.3s;
+                            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+                        " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(139, 92, 246, 0.3)'">
+                            <span style="font-size: 1.3em;">🔗</span>
+                            <span>Post Comments</span>
+                        </button>
+                        
+                        <button onclick="openMemoryWeaver()" style="
+                            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+                            color: white;
+                            border: none;
+                            padding: 18px 25px;
+                            border-radius: 15px;
+                            cursor: pointer;
+                            font-size: 1.1em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            transition: all 0.3s;
+                            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+                        " onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(236, 72, 153, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(236, 72, 153, 0.3)'">
+                            <span style="font-size: 1.3em;">✨</span>
+                            <span>Memory Weaver (AI)</span>
+                        </button>
+                    </div>
+                    
+                    <p style="
+                        text-align: center;
+                        color: #999;
+                        margin-top: 30px;
+                        font-size: 0.95em;
+                    ">Connect and share your stories 💫</p>
+                </div>
+            </div>
+
+            <!-- User Profile Icon -->
+            <div style="position: absolute; top: 30px; right: 30px;">
+                <div onclick="toggleUserMenu()" style="
+                    width: 50px;
+                    height: 50px;
+                    background: linear-gradient(135deg, #dab2ff 0%, #fda5d5 100%);
+                    border-radius: 50%;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    box-shadow: 0 4px 15px rgba(218, 178, 255, 0.4);
+                    transition: all 0.3s;
+                " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <img src="pics/6.jpeg" alt="PLLI" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                
+                <!-- User Menu Dropdown -->
+                <div id="userMenu" style="
+                    display: none;
+                    position: absolute;
+                    top: 60px;
+                    right: 0;
+                    background: white;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                    overflow: hidden;
+                    min-width: 180px;
+                    z-index: 100;
+                ">
+                    <div onclick="showView('userProfile'); toggleUserMenu()" style="
+                        padding: 15px 20px;
+                        cursor: pointer;
+                        transition: background 0.2s;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    " onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='white'">
+                        <span>👤</span>
+                        <span style="font-weight: 500;">My Profile</span>
+                    </div>
+                    <div style="height: 1px; background: #e5e7eb;"></div>
+                    <div onclick="logout(); toggleUserMenu()" style="
+                        padding: 15px 20px;
+                        cursor: pointer;
+                        transition: background 0.2s;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        color: #ef4444;
+                    " onmouseover="this.style.background='#fef2f2'" onmouseout="this.style.background='white'">
+                        <span>🚪</span>
+                        <span style="font-weight: 500;">Logout</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Upload Section -->
+            <div style="position: absolute; top: 30px; left: 30px;">
+                <button onclick="document.getElementById('resourceFile').click()" style="
+                    background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+                    color: white;
+                    border: none;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    cursor: pointer;
+                    font-size: 1.8em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+                    transition: all 0.3s;
+                " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)';">
+                    📁
+                </button>
+                <input type="file" id="resourceFile" accept=".csv,.json,.txt" style="display:none" onchange="loadResourceFile()">
+                <div id="loadStatus"></div>
+        </div>
+        </div>
+
+        <!-- Memory Map View -->
+        <div id="memoryMapView" class="content hidden">
+            <div style=" display: flex; min-height: 100vh; background: linear-gradient(135deg, #dbeafe 0%, #f3e8ff 50%, #fce7f3 100%); position: relative;">
+                <!-- Left Page -->
+                <div style="flex: 1; background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 50%, #fef3f8 100%); min-height: 100vh; padding: 40px; position: relative; border-right: 2px solid #e5e7eb;">
+                    <button class="back-button" onclick="showView('home')">
+                        <span>🏠</span>
+                        Back to Index
+                    </button>
+                    
+                    <!-- Title -->
+                    <h2 class="gradient-text" style="font-size: 2.2em;">MEMORY MAP</h2>
+                    <h2 class="gradient-text" style="font-size: 1.8em;">2026</h2>
+                    
+                    <!-- January Section -->
+                    <div style="margin-top: 15px;  margin-bottom: 40px;">
+                        <h3 style="color: #c27aff; font-size: 1.3em; margin-bottom: 10px;">Jan</h3>
+                        <div style=" display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; max-width: 400px;
+                        ">
+                            <div style="
+                                background: white;
+                                border: 3px solid #e5e7eb;
+                                border-radius: 12px;
+                                padding: 8px;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            " onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'" onclick="showMonthCollection('January', 0)">
+                                <img src="pics/3.2.jpeg" alt="Memory" style="
+                                    width: 100%;
+                                    height: 150px;
+                                    object-fit: cover;
+                                    border-radius: 8px;
+                                " onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22><rect fill=%22%23f0f0f0%22 width=%22200%22 height=%22150%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>Photo</text></svg>'">
+                            </div>
+                            <div style="
+                                background: white;
+                                border: 3px solid #e5e7eb;
+                                border-radius: 12px;
+                                padding: 8px;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            " onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'" onclick="showMonthCollection('January', 0)">
+                                <img src="pics/student.jpg" alt="Memory" style="
+                                    width: 100%;
+                                    height: 150px;
+                                    object-fit: cover;
+                                    border-radius: 8px;
+                                " onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22><rect fill=%22%23f0f0f0%22 width=%22200%22 height=%22150%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>Photo</text></svg>'">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- February Section -->
+                    <div style="margin-bottom: 40px;">
+                        <h3 style="color: #c27aff; font-size: 1.3em; margin-bottom: 10px;">Feb</h3>
+                        <div style="max-width: 300px;">
+                            <div style="
+                                background: white;
+                                border: 3px solid #e5e7eb;
+                                border-radius: 12px;
+                                padding: 8px;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            " onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'" onclick="showMonthCollection('February', 1)">
+                                <img src="pics/now.png" alt="Graduation Day" style="
+                                    width: 100%;
+                                    height: 150px;
+                                    object-fit: cover;
+                                    border-radius: 8px;
+                                    margin-bottom: 10px;
+                                " onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22150%22><rect fill=%22%23f0f0f0%22 width=%22300%22 height=%22150%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>Photo</text></svg>'">
+                                <p style="
+                                    color: #666;
+                                    font-size: 0.9em;
+                                    margin: 0;
+                                ">Graduation Day</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Buttons Bottom Left -->
+                    <div style="position: absolute; bottom: 40px;left: 40px;">
+                        <button onclick="previousMonth()" style="
+                            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+                            color: white;
+                            border: none;
+                            padding: 12px 24px;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            font-size: 1em;
+                            font-weight: 600;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+                            transition: all 0.3s;
+                        " onmouseover="this.style.transform='translateX(-3px)'" onmouseout="this.style.transform='translateX(0)'">
+                            <span>←</span>
+                            <span>Previous</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Right Page -->
+                <div style="flex: 1; background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 50%, #fef3f8 100%); min-height: 100vhwhite; padding: 40px; position: relative;">
+                    <!-- March Section -->
+                     <h3 style="color: #c27aff; font-size: 1.3em; margin-bottom: 15px;">March</h3>
+                    <div style="margin-bottom: 40px;">
+                        <div style="
+                            background: white;
+                            border: 3px solid #e5e7eb;
+                            border-radius: 12px;
+                            padding: 8px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            max-width: 300px;
+                            margin-bottom: 15px;
+                        " onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'" onclick="showMonthCollection('March', 2)">
+                            <img src="pics/_10.webp" alt="March Memory" style="
+                                width: 100%;
+                                height: 150px;
+                                object-fit: cover;
+                                border-radius: 8px;
+                            " onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22150%22><rect fill=%22%23f0f0f0%22 width=%22300%22 height=%22150%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>Photo</text></svg>'">
+                        </div>
+                    </div>
+                    
+                    <!-- April Section -->
+                     <h3 style="color: #c27aff; font-size: 1.3em; margin-bottom: 15px;">April</h3>
+                    <div style="margin-bottom: 40px;">
+                        <div style="
+                            background: white;
+                            border: 3px solid #e5e7eb;
+                            border-radius: 12px;
+                            padding: 8px;
+                            cursor: pointer;
+                            transition: all 0.3s;
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            max-width: 350px;
+                            margin-bottom: 15px;
+                        " onmouseover="this.style.transform='scale(1.05)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'" onclick="showMonthCollection('April', 3)">
+                            <img src="pics/retreat.jpg" alt="April Memory" style="
+                                width: 100%;
+                                height: 180px;
+                                object-fit: cover;
+                                border-radius: 8px;
+                            " onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22350%22 height=%22180%22><rect fill=%22%23f0f0f0%22 width=%22350%22 height=%22180%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>Photo</text></svg>'">
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination Indicator Center Bottom -->
+                    <div style="
+                        position: absolute;
+                        bottom: 40px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        display: flex;
+                        gap: 8px;
+                        align-items: center;
+                    ">
+                        <div style="
+                            width: 30px;
+                            height: 8px;
+                            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+                            border-radius: 4px;
+                        "></div>
+                        <div style="
+                            width: 8px;
+                            height: 8px;
+                            background: #e5e7eb;
+                            border-radius: 50%;
+                        "></div>
+                    </div>
+                    
+                    <!-- Navigation Buttons Bottom Right -->
+                    <div style="
+                        position: absolute;
+                        bottom: 40px;
+                        right: 40px;
+                    ">
+                        <button onclick="nextMonth()" style="
+                            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+                            color: white;
+                            border: none;
+                            padding: 12px 24px;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            font-size: 1em;
+                            font-weight: 600;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+                            transition: all 0.3s;
+                        " onmouseover="this.style.transform='translateX(3px)'" onmouseout="this.style.transform='translateX(0)'">
+                            <span>Next</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Month Collection View -->
+        <div id="monthCollectionView" class="content hidden">
+            <button class="back-button" onclick="goBack()">
+                <span>🏠</span>
+                Back
+            </button>
+            
+            <div style="
+                background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 50%, #fef3f8 100%);
+                min-height: 100vh;
+                padding: 40px;
+            ">
+                <div style="max-width: 1200px; margin: 0 auto;">
+                    <!-- Header -->
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h1 id="monthCollectionTitle" style="
+                            background: linear-gradient(90deg, #c27aff, #fb64b6);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                            font-size: 3em;
+                            font-weight: 700;
+                            margin-bottom: 10px;
+                        ">2026</h1>
+                        <h2 id="monthCollectionSubtitle" style="
+                            color: #666;
+                            font-size: 1.2em;
+                            font-weight: 400;
+                        ">March Collection</h2>
+                    </div>
+                    
+                    <!-- Photo Grid -->
+                    <div id="monthPhotosGrid" style="
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                        gap: 30px;
+                        margin-bottom: 40px;
+                    ">
+                        <!-- Photos will be loaded here -->
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <div style="
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 20px;
+                        margin-top: 40px;
+                    ">
+                        <button onclick="navigateMonth(-1)" style="
+                            padding: 12px 24px;
+                            border: none;
+                            background: white;
+                            color: #c27aff;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            font-size: 1em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            transition: all 0.3s;
+                        " onmouseover="this.style.background='#c27aff'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#c27aff'">
+                            ← Previous
+                        </button>
+                        
+                        <div style="
+                            display: flex;
+                            gap: 8px;
+                        ">
+                            <div id="monthDot1" style="width: 8px; height: 8px; background: #e5e7eb; border-radius: 50%;"></div>
+                            <div id="monthDot2" style="width: 8px; height: 8px; background: #e5e7eb; border-radius: 50%;"></div>
+                        </div>
+                        
+                        <button onclick="navigateMonth(1)" style="
+                            padding: 12px 24px;
+                            border: none;
+                            background: linear-gradient(135deg, #c27aff 0%, #fb64b6 100%);
+                            color: white;
+                            border-radius: 10px;
+                            cursor: pointer;
+                            font-size: 1em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 8px;
+                            transition: all 0.3s;
+                        " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            Next →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Explorer View -->
+        <div id="profileExplorerView" class="content hidden">
+            <button class="back-button" onclick="showView('home')">
+                <span>🏠</span>
+                Back to Index
+            </button>
+            
+            <h2 class="gradient-text" style="font-size: 2.2em; margin-bottom: 10px;">PROFILE EXPLORER</h2>
+            
+            <div class="profile-explorer-container">
+                <div class="profile-explorer-main">
+                    <input type="text" class="search-box" id="searchInput" placeholder="Search classmates, friends and more..." oninput="performSearch()">
+                    
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" onclick="setActiveFilter(this, 'all')">All</button>
+                        <button class="filter-tab" onclick="setActiveFilter(this, 'classmate')">Classmates</button>
+                        <button class="filter-tab" onclick="setActiveFilter(this, 'teacher')">Teachers</button>
+                        <button class="filter-tab" onclick="setActiveFilter(this, 'friend')">Friends</button>
+                    </div>
+                    
+                    <div class="people-count" id="peopleCount">6 people found</div>
+                    
+                    <div id="peopleGrid" class="person-grid"></div>
+                    <div id="searchResults" class="person-grid"></div>
+                </div>
+                
+                <div class="profile-explorer-sidebar">
+                    <div class="find-friends-card">
+                        <svg class="find-friends-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="35" cy="35" r="28" fill="#c084fc" opacity="0.3"/>
+                            <circle cx="65" cy="35" r="28" fill="#a78bfa" opacity="0.3"/>
+                            <circle cx="35" cy="35" r="12" fill="#a78bfa"/>
+                            <circle cx="65" cy="35" r="12" fill="#c084fc"/>
+                            <path d="M20 65 Q35 55 50 65 T80 65" stroke="#9270db" stroke-width="3" fill="none"/>
+                        </svg>
+                        
+                        <h3 class="find-friends-title">Find Your Friends</h3>
+                        <p class="find-friends-description">Search for classmates, teachers, and friends. Click on any profile to see their full details and journey.</p>
+                        
+                        <div class="stats-container">
+                            <div class="stat-box">
+                                <div class="stat-number" id="statClassmates">4</div>
+                                <div class="stat-label">Classmates</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number" id="statTeachers">1</div>
+                                <div class="stat-label">Teachers</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number" id="statFriends">1</div>
+                                <div class="stat-label">Friends</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Time Capsule View -->
+        <div id="timeCapsuleView" class="content hidden">
+                <button class="back-button" onclick="showView('home')">
+                    <span>🏠</span>
+                    Back to Index
+                </button>
+
+                <h2 class="gradient-text" style="font-size: 2.2em; margin-bottom: 10px;">TIME CAPSULE</h2>
+
+                <!-- Left Column: Time Capsules List -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                    <div>
+                        <!-- 2020 Capsule -->
+                        <div style="margin-bottom: 30px;">
+                            <h2 style="
+                                color: #fb64b6;
+                                font-size: 1.8em;
+                                margin-bottom: 15px;
+                            ">2020</h2>
+                            <div onclick="openTimeCapsule('2020')" style="
+                                background: white;
+                                border: 3px solid #e5e7eb;
+                                border-radius: 15px;
+                                padding: 20px;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            " onmouseover="this.style.transform='scale(1.02)'; this.style.borderColor='#10b981'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'">
+                                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                                    <span style="font-size: 2em;">✨</span>
+                                    <div>
+                                        <div style="
+                                            color: #10b981;
+                                            font-weight: 600;
+                                            font-size: 1.1em;
+                                        ">Open</div>
+                                        <div style="
+                                            color: #999;
+                                            font-size: 0.9em;
+                                        ">0 days left</div>
+                                    </div>
+                                </div>
+                                <div style="
+                                    color: #666;
+                                    font-size: 0.95em;
+                                ">From: Me</div>
+                            </div>
+                        </div>
+
+                        <!-- 2021 Capsule -->
+                        <div style="margin-bottom: 30px;">
+                            <h2 style="
+                                color: #fb64b6;
+                                font-size: 1.8em;
+                                margin-bottom: 15px;
+                            ">2021</h2>
+                            <div style="
+                                background: white;
+                                border: 3px solid #e5e7eb;
+                                border-radius: 15px;
+                                padding: 20px;
+                                opacity: 0.7;
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            ">
+                                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                                    <span style="font-size: 2em;">🔒</span>
+                                    <div>
+                                        <div style="
+                                            color: #999;
+                                            font-weight: 600;
+                                            font-size: 1.1em;
+                                        ">Locked</div>
+                                        <div style="
+                                            color: #999;
+                                            font-size: 0.9em;
+                                        ">11 months left</div>
+                                    </div>
+                                </div>
+                                <div style="
+                                    color: #999;
+                                    font-size: 0.95em;
+                                ">From: Mulmandu</div>
+                            </div>
+                        </div>
+
+                        <!-- 2022 Capsule -->
+                        <div style="margin-bottom: 30px;">
+                            <h2 style="
+                                color: #fb64b6;
+                                font-size: 1.8em;
+                                margin-bottom: 15px;
+                            ">2022</h2>
+                            <div style="
+                                background: white;
+                                border: 3px solid #e5e7eb;
+                                border-radius: 15px;
+                                padding: 20px;
+                                opacity: 0.7;
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            ">
+                                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                                    <span style="font-size: 2em;">🔒</span>
+                                    <div>
+                                        <div style="
+                                            color: #999;
+                                            font-weight: 600;
+                                            font-size: 1.1em;
+                                        ">Locked</div>
+                                        <div style="
+                                            color: #999;
+                                            font-size: 0.9em;
+                                        ">6 months left</div>
+                                    </div>
+                                </div>
+                                <div style="
+                                    color: #999;
+                                    font-size: 0.95em;
+                                ">From: Princess Noah</div>
+                            </div>
+                        </div>
+
+                        <!-- 2023 Capsule -->
+                        <div style="margin-bottom: 30px;">
+                            <h2 style="
+                                color: #fb64b6;
+                                font-size: 1.8em;
+                                margin-bottom: 15px;
+                            ">2023</h2>
+                            <div style="
+                                background: white;
+                                border: 3px solid #e5e7eb;
+                                border-radius: 15px;
+                                padding: 20px;
+                                opacity: 0.7;
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            ">
+                                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                                    <span style="font-size: 2em;">🔒</span>
+                                    <div>
+                                        <div style="
+                                            color: #999;
+                                            font-weight: 600;
+                                            font-size: 1.1em;
+                                        ">Locked</div>
+                                        <div style="
+                                            color: #999;
+                                            font-size: 0.9em;
+                                        ">24 months left</div>
+                                    </div>
+                                </div>
+                                <div style="
+                                    color: #999;
+                                    font-size: 0.95em;
+                                ">From: Hamin</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Memories Await -->
+                    <div style="
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        padding: 40px;
+                    ">
+                        <div style="font-size: 6em; margin-bottom: 30px;">⏳</div>
+                        <h2 style="
+                            background: linear-gradient(90deg, #c27aff, #fb64b6);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                            font-size: 2.5em;
+                            font-weight: 700;
+                            margin-bottom: 20px;
+                        ">Memories Await</h2>
+                        <p style="
+                            color: #666;
+                            font-size: 1.1em;
+                            line-height: 1.6;
+                            margin-bottom: 10px;
+                        ">Click on an unlocked time capsule to reveal messages and videos from your friends.</p>
+                        <p style="
+                            color: #999;
+                            font-size: 0.95em;
+                            font-style: italic;
+                            line-height: 1.6;
+                        ">"Time capsules preserve our memories and let us relive special moments from the past."</p>
+                    </div>
+                </div>
+        </div>
+
+        <!-- Time Capsule Message Modal -->
+        <div id="timeCapsuleModal" style="
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        " onclick="closeTimeCapsule()">
+            <div onclick="event.stopPropagation()" style="
+                background: white;
+                border-radius: 20px;
+                padding: 40px;
+                max-width: 600px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            ">
+                <div style="text-align: right; margin-bottom: 20px;">
+                    <button onclick="closeTimeCapsule()" style="
+                        background: #e5e7eb;
+                        border: none;
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        font-size: 1.2em;
+                        color: #666;
+                    ">×</button>
+                </div>
+                <div id="capsuleContent">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- User Profile View -->
+        <div id="userProfileView" class="content hidden">
+            <div style="
+                max-width: 1100px;
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            ">
+
+                <!-- Left Column -->
+                <div style="
+                    background: white;
+                    border-radius: 25px;
+                    padding: 40px;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                ">
+                    <button class="back-button" onclick="showView('home')">
+                        <span>🏠</span>
+                        Back to Index
+                    </button>
+
+                    <!-- Profile Header -->
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <div style="
+                            width: 120px;
+                            height: 120px;
+                            border-radius: 50%;
+                            margin: 0 auto 20px;
+                            background: linear-gradient(135deg, #e0d4f7 0%, #f0e6ff 100%);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            overflow: hidden;
+                            border: 5px solid #f5f0ff;
+                        ">
+                            <img src="pics/6.jpeg" alt="PLLI" style="
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            " onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22><rect fill=%22%23e0d4f7%22 width=%22150%22 height=%22150%22/><text x=%2250%%22 y=%2250%%22 font-size=%2240%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>PLLI</text></svg>'">
+                        </div>
+                        <h1 style="
+                            background: linear-gradient(90deg, #c27aff, #fb64b6);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                            font-size: 2.5em;
+                            font-weight: 700;
+                            margin-bottom: 5px;
+                        ">PLLI</h1>
+                        <p style="
+                            color: #9ca3af;
+                            font-size: 1em;
+                        ">Graduated on 2026</p>
+                    </div>
+
+                    <!-- Friend List -->
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="
+                            color: #a78bfa;
+                            font-size: 1.3em;
+                            font-weight: 600;
+                            margin-bottom: 15px;
+                        ">Friend List</h3>
+                        <div style="
+                            display: flex;
+                            gap: 10px;
+                            flex-wrap: wrap;
+                        ">
+                            <div onclick="showPersonDetail(1)" style="
+                                width: 60px;
+                                height: 60px;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                                border: 3px solid #e5e7eb;
+                            " onmouseover="this.style.transform='scale(1.1)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'">
+                                <img src="pics/1.jpeg" style="width: 100%; height: 100%; object-fit: cover;" alt="Yejun">
+                            </div>
+                            <div onclick="showPersonDetail(2)" style="
+                                width: 60px;
+                                height: 60px;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                                border: 3px solid #e5e7eb;
+                            " onmouseover="this.style.transform='scale(1.1)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'">
+                                <img src="pics/2.jpeg" style="width: 100%; height: 100%; object-fit: cover;" alt="Noah">
+                            </div>
+                            <div onclick="showPersonDetail(3)" style="
+                                width: 60px;
+                                height: 60px;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                                border: 3px solid #e5e7eb;
+                            " onmouseover="this.style.transform='scale(1.1)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'">
+                                <img src="pics/3.jpeg" style="width: 100%; height: 100%; object-fit: cover;" alt="Bambi">
+                            </div>
+                            <div onclick="showPersonDetail(4)" style="
+                                width: 60px;
+                                height: 60px;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                                border: 3px solid #e5e7eb;
+                            " onmouseover="this.style.transform='scale(1.1)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'">
+                                <img src="pics/4.jpeg" style="width: 100%; height: 100%; object-fit: cover;" alt="Eunho">
+                            </div>
+                            <div onclick="showPersonDetail(5)" style="
+                                width: 60px;
+                                height: 60px;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                                border: 3px solid #e5e7eb;
+                            " onmouseover="this.style.transform='scale(1.1)'; this.style.borderColor='#c27aff'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='#e5e7eb'">
+                                <img src="pics/5.jpg" style="width: 100%; height: 100%; object-fit: cover;" alt="Hamin">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pictures -->
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="
+                            color: #a78bfa;
+                            font-size: 1.3em;
+                            font-weight: 600;
+                            margin-bottom: 15px;
+                        ">Pictures</h3>
+                        <div style="
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            gap: 10px;
+                        ">
+                            <img src="pics/plli.jpg" style="
+                                width: 100%;
+                                height: 120px;
+                                object-fit: cover;
+                                border-radius: 12px;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Picture 1">
+                            <img src="pics/3.1.jpeg" style="
+                                width: 100%;
+                                height: 120px;
+                                object-fit: cover;
+                                border-radius: 12px;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Picture 2">
+                            <img src="pics/_1.png" style="
+                                width: 100%;
+                                height: 120px;
+                                object-fit: cover;
+                                border-radius: 12px;
+                                cursor: pointer;
+                                transition: all 0.3s;
+                            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" alt="Picture 3">
+                        </div>
+                    </div>
+
+                    <!-- Time Capsule -->
+                    <div>
+                        <h3 style="
+                            color: #a78bfa;
+                            font-size: 1.3em;
+                            font-weight: 600;
+                            margin-bottom: 15px;
+                        ">Time Capsule</h3>
+                        <div style="
+                            display: flex;
+                            gap: 15px;
+                            justify-content: center;
+                        ">
+                            <div onclick="openTimeCapsule('2020')" style="text-align: center;">
+                                <div style="
+                                    width: 70px;
+                                    height: 70px;
+                                    background: linear-gradient(135deg, #fce7f3 0%, #fef3f8 100%);
+                                    border-radius: 50%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    margin: 0 auto 8px;
+                                    font-size: 2em;
+                                ">⏰</div>
+                                <p style="color: #666; font-size: 0.85em;">0 day</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="
+                                    width: 70px;
+                                    height: 70px;
+                                    background: linear-gradient(135deg, #fce7f3 0%, #fef3f8 100%);
+                                    border-radius: 50%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    margin: 0 auto 8px;
+                                    font-size: 2em;
+                                ">📅</div>
+                                <p style="color: #666; font-size: 0.85em;">3 months</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="
+                                    width: 70px;
+                                    height: 70px;
+                                    background: linear-gradient(135deg, #fce7f3 0%, #fef3f8 100%);
+                                    border-radius: 50%;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    margin: 0 auto 8px;
+                                    font-size: 2em;
+                                ">🎉</div>
+                                <p style="color: #666; font-size: 0.85em;">1 year</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div style="
+                    background: white;
+                    border-radius: 25px;
+                    padding: 40px;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                ">
+                    <!-- Then & Now -->
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="
+                            background: linear-gradient(90deg, #c27aff, #fb64b6);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                            font-size: 1.5em;
+                            font-weight: 600;
+                            margin-bottom: 20px;
+                        ">Then & Now</h3>
+                        
+                        <div style="
+                            background: linear-gradient(135deg, #fef3f8 0%, #fff7ed 100%);
+                            padding: 20px;
+                            border-radius: 15px;
+                            margin-bottom: 15px;
+                        ">
+                            <div style="display: flex; align-items: flex-start; gap: 15px;">
+                                <div style="font-size: 2em;">🌱</div>
+                                <div>
+                                    <div style="
+                                        color: #fb64b6;
+                                        font-size: 0.75em;
+                                        text-transform: uppercase;
+                                        font-weight: 700;
+                                        letter-spacing: 0.5px;
+                                        margin-bottom: 5px;
+                                    ">THEN</div>
+                                    <p style="color: #2d2d2d; font-size: 0.95em; line-height: 1.5;">
+                                        Dreamed of making a difference and connecting with amazing people
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="
+                            background: linear-gradient(135deg, #fef3f8 0%, #fff7ed 100%);
+                            padding: 20px;
+                            border-radius: 15px;
+                        ">
+                            <div style="display: flex; align-items: flex-start; gap: 15px;">
+                                <div style="font-size: 2em;">🌟</div>
+                                <div>
+                                    <div style="
+                                        color: #fb64b6;
+                                        font-size: 0.75em;
+                                        text-transform: uppercase;
+                                        font-weight: 700;
+                                        letter-spacing: 0.5px;
+                                        margin-bottom: 5px;
+                                    ">NOW</div>
+                                    <p style="color: #2d2d2d; font-size: 0.95em; line-height: 1.5;">
+                                        Living my dreams and cherishing every moment with friends
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Friends' Signatures -->
+                    <div>
+                        <h3 style="
+                            background: linear-gradient(90deg, #c27aff, #fb64b6);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                            font-size: 1.5em;
+                            font-weight: 600;
+                            margin-top: 40px;
+                            margin-bottom: 20px;
+                        ">Friends' Signatures</h3>
+
+                        <div style="
+                            background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+                            padding: 20px;
+                            border-radius: 15px;
+                            margin-bottom: 12px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        ">
+                            <div>
+                                <h4 style="color: #60a5fa; font-weight: 600; margin-bottom: 5px;">Noah</h4>
+                                <p style="color: #666; font-size: 0.9em;">Stay amazing!</p>
+                            </div>
+                            <span style="font-size: 1.8em;">✍️</span>
+                        </div>
+
+                        <div style="
+                            background: linear-gradient(135deg, #fef3f8 0%, #fef9f3 100%);
+                            padding: 20px;
+                            border-radius: 15px;
+                            margin-bottom: 12px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        ">
+                            <div>
+                                <h4 style="color: #fb64b6; font-weight: 600; margin-bottom: 5px;">Eunho</h4>
+                                <p style="color: #666; font-size: 0.9em;">Love you lots, my sunshine! 😊</p>
+                            </div>
+                            <span style="font-size: 1.8em;">💖</span>
+                        </div>
+
+                        <div style="
+                            background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+                            padding: 20px;
+                            border-radius: 15px;
+                            margin-bottom: 12px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        ">
+                            <div>
+                                <h4 style="color: #60a5fa; font-weight: 600; margin-bottom: 5px;">Yejun</h4>
+                                <p style="color: #666; font-size: 0.9em;">Hope to see you again soon</p>
+                            </div>
+                            <span style="font-size: 1.8em;">✍️</span>
+                        </div>
+
+                        <p style="
+                            text-align: center;
+                            color: #999;
+                            font-size: 0.85em;
+                            margin-top: 15px;
+                        ">3 friends signed your yearbook</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Icon (Bottom Right) -->
+            <div style="
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 5px 20px rgba(236, 72, 153, 0.4);
+                transition: all 0.3s;
+            " onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                <span style="font-size: 1.8em; color: white;">💬</span>
+            </div>
+        </div>
+
+        <!-- Write Message Modal -->
+        <div id="messageModal" style="
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        ">
+            <div style="
+                background: white;
+                border-radius: 20px;
+                padding: 40px;
+                max-width: 600px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                position: relative;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            ">
+                <button onclick="closeMessagePopup()" style="
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    background: white;
+                    border: 2px solid #e5e7eb;
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    font-size: 1.2em;
+                    color: #666;
+                    transition: all 0.3s;
+                " onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='white'">×</button>
+                
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 3.5em; margin-bottom: 15px;">✏️</div>
+                    <h2 id="messageModalTitle" style="
+                        background: linear-gradient(90deg, #c27aff, #fb64b6);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        font-size: 2em;
+                        font-weight: 700;
+                        margin-bottom: 5px;
+                    ">Write Message</h2>
+                    <p id="messageRecipient" style="color: #999; font-size: 0.95em;">To: </p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="
+                        display: block;
+                        color: #333;
+                        font-weight: 600;
+                        margin-bottom: 8px;
+                        font-size: 0.95em;
+                    ">Your Name:</label>
+                    <input type="text" id="messageName" placeholder="Enter your name" style="
+                        width: 100%;
+                        padding: 12px 15px;
+                        border: 2px solid #e5e7eb;
+                        border-radius: 10px;
+                        font-size: 1em;
+                        transition: border-color 0.3s;
+                    " onfocus="this.style.borderColor='#c27aff'" onblur="this.style.borderColor='#e5e7eb'">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <label style="
+                            color: #333;
+                            font-weight: 600;
+                            font-size: 0.95em;
+                        ">Your Message:</label>
+                        <button onclick="getAISuggestion()" style="
+                            padding: 6px 12px;
+                            border: 1px solid #c27aff;
+                            background: linear-gradient(135deg, #faf5ff 0%, #fef3f8 100%);
+                            color: #c27aff;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            font-size: 0.85em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                            transition: all 0.3s;
+                        " onmouseover="this.style.background='#c27aff'; this.style.color='white'" onmouseout="this.style.background='linear-gradient(135deg, #faf5ff 0%, #fef3f8 100%)'; this.style.color='#c27aff'">
+                            ✨ AI Suggestion
+                        </button>
+                    </div>
+                    <textarea id="messageText" rows="6" placeholder="Write your message here or try AI suggestion..." style="
+                        width: 100%;
+                        padding: 12px 15px;
+                        border: 2px solid #e5e7eb;
+                        border-radius: 10px;
+                        font-size: 1em;
+                        resize: vertical;
+                        transition: border-color 0.3s;
+                    " onfocus="this.style.borderColor='#c27aff'" onblur="this.style.borderColor='#e5e7eb'"></textarea>
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button onclick="closeMessagePopup()" style="
+                        padding: 12px 25px;
+                        border: 2px solid #e5e7eb;
+                        background: white;
+                        color: #666;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: 600;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='white'">Cancel</button>
+                    
+                    <button onclick="sendMessage()" style="
+                        padding: 12px 25px;
+                        border: none;
+                        background: linear-gradient(135deg, #c27aff 0%, #fb64b6 100%);
+                        color: white;
+                        border-radius: 10px;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-weight: 600;
+                        transition: all 0.3s;
+                    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(194, 122, 255, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">Send Message</button>
+                </div>
+                
+                <div id="messageSuccess" style="
+                    display: none;
+                    margin-top: 20px;
+                    padding: 15px;
+                    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+                    border-radius: 10px;
+                    text-align: center;
+                    color: #065f46;
+                    font-weight: 600;
+                ">✓ Message sent successfully!</div>
+            </div>
+        </div>
+
+        <!-- Memory Weaver Modal (AI Feature) -->
+        <div id="memoryWeaverModal" style="
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        ">
+            <div style="
+                background: white;
+                border-radius: 20px;
+                padding: 40px;
+                max-width: 700px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                position: relative;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            ">
+                <button onclick="closeMemoryWeaver()" style="
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    background: white;
+                    border: 2px solid #e5e7eb;
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    font-size: 1.2em;
+                    color: #666;
+                    transition: all 0.3s;
+                " onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='white'">×</button>
+                
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 4em; margin-bottom: 15px;">✨</div>
+                    <h2 style="
+                        background: linear-gradient(90deg, #ec4899, #db2777);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        font-size: 2.2em;
+                        font-weight: 700;
+                        margin-bottom: 10px;
+                    ">Memory Weaver</h2>
+                    <p style="color: #666; font-size: 1em;">AI-Generated Memory Narratives</p>
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label style="
+                        display: block;
+                        color: #333;
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                        font-size: 0.95em;
+                    ">Select a memory theme:</label>
+                    <select id="memoryTheme" style="
+                        width: 100%;
+                        padding: 12px 15px;
+                        border: 2px solid #e5e7eb;
+                        border-radius: 10px;
+                        font-size: 1em;
+                        transition: border-color 0.3s;
+                    " onfocus="this.style.borderColor='#ec4899'" onblur="this.style.borderColor='#e5e7eb'">
+                        <option value="">Choose a theme...</option>
+                        <option value="graduation">Graduation Journey</option>
+                        <option value="friendship">Friendship Bonds</option>
+                        <option value="growth">Personal Growth</option>
+                        <option value="adventures">Campus Adventures</option>
+                        <option value="challenges">Overcoming Challenges</option>
+                    </select>
+                </div>
+                
+                <button onclick="generateMemoryNarrative()" style="
+                    width: 100%;
+                    padding: 15px;
+                    border: none;
+                    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+                    color: white;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    font-size: 1.1em;
+                    font-weight: 600;
+                    margin-bottom: 25px;
+                    transition: all 0.3s;
+                    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+                " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(236, 72, 153, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(236, 72, 153, 0.3)'">
+                    ✨ Generate AI Narrative
+                </button>
+                
+                <div id="narrativeResult" style="display: none;">
+                    <div style="
+                        background: linear-gradient(135deg, #fef3f8 0%, #fef9f3 100%);
+                        padding: 25px;
+                        border-radius: 15px;
+                        border-left: 4px solid #ec4899;
+                    ">
+                        <h3 style="
+                            color: #ec4899;
+                            font-size: 1.2em;
+                            margin-bottom: 15px;
+                            font-weight: 600;
+                        " id="narrativeTitle">Your Memory Story</h3>
+                        <p style="
+                            color: #333;
+                            line-height: 1.8;
+                            font-size: 1em;
+                        " id="narrativeText"></p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px; color: #999; font-size: 0.85em;">
+                        💡 This narrative was AI-generated based on your yearbook memories
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comments View -->
+        <div id="commentsView" class="content hidden">
+            <button class="back-button" onclick="showView('home')">
+                <span>🏠</span>
+                Back to Index
+            </button>
+            <h2 class="gradient-text" style="font-size: 2.2em; margin-bottom: 10px;">POST COMMENTS</h2>
+            <p style="color: #666; margin-bottom: 25px; font-size: 0.95em;">
+                Share your thoughts and memories with everyone! 💭
+                <span id="commentCount" style="color: #a78bfa; font-weight: 600;"></span>
+            </p>
+            <div class="form-group">
+                <label>Your Name:</label>
+                <input type="text" id="commentName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Your Message:</label>
+                <textarea id="commentText" rows="4" placeholder="Share your thoughts..."></textarea>
+            </div>
+            <button class="btn-primary" onclick="postComment()">Post Comment</button>
+            <div class="comment-section" id="commentsList"></div>
+        </div>
+
+        <!-- Memorabilia View -->
+        <div id="memorabiliaView" class="content hidden">
+            <button class="back-button" onclick="showView('home')">
+                <span>🏠</span>
+                Back to Index
+            </button>
+            <h2 class="gradient-text" style="font-size: 2.2em; margin-bottom: 10px;">MEMORABILIA</h2>
+            <div class="memorabilia-grid">
+                <div class="memorabilia-item">
+                    <div style="font-size: 3em;">📚</div>
+                    <h3>Textbooks</h3>
+                </div>
+                <div class="memorabilia-item">
+                    <div style="font-size: 3em;">🎒</div>
+                    <h3>School Bags</h3>
+                </div>
+                <div class="memorabilia-item">
+                    <div style="font-size: 3em;">👔</div>
+                    <h3>Uniforms</h3>
+                </div>
+                <div class="memorabilia-item">
+                    <div style="font-size: 3em;">🍱</div>
+                    <h3>Lunch Boxes</h3>
+                </div>
+                <div class="memorabilia-item">
+                    <div style="font-size: 3em;">🎵</div>
+                    <h3>Trending Music</h3>
+                </div>
+                <div class="memorabilia-item">
+                    <div style="font-size: 3em;">📸</div>
+                    <h3>Field Trips</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Person Detail View -->
+        <div id="detailView" class="content hidden">
+            <button class="back-button" onclick="goBack()">
+                <span>🏠</span>
+                Back
+            </button>
+            <div id="detailContent" class="detail-view"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Initialize data structure
+        let yearbook = {
+            people: [],
+            comments: [],
+            friends: [] // Array of person IDs that are friends
+        };
+
+        let dataLoaded = false;
+
+        // Parse resource file content
+        function parseResourceFile(content) {
+            const lines = content.split('\n').filter(line => line.trim() !== '');
+            const people = [];
+            
+            lines.forEach((line, index) => {
+                // Skip empty lines
+                if (!line.trim()) return;
+                
+                // Parse CSV-like format
+                // Format: id, firstName, lastName, birthDate, clubs, address, whereTo, picture, type
+                const parts = [];
+                let current = '';
+                let inQuotes = false;
+                
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        parts.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                parts.push(current.trim());
+                
+                // Remove quotes from strings
+                const cleanParts = parts.map(p => p.replace(/^["']|["']$/g, ''));
+                
+                if (cleanParts.length >= 8) {
+                    people.push({
+                        id: parseInt(cleanParts[0]) || (index + 1),
+                        firstName: cleanParts[1] || '',
+                        lastName: cleanParts[2] || '',
+                        birthDate: cleanParts[3] || '',
+                        clubs: cleanParts[4] || '',
+                        address: cleanParts[5] || '',
+                        whereTo: cleanParts[6] || '',
+                        picture: cleanParts[7] || 'default.jpg',
+                        type: cleanParts[8] || 'classmate'
+                    });
+                }
+            });
+            
+            return people;
+        }
+
+        // Load resource file
+        function loadResourceFile() {
+            const fileInput = document.getElementById('resourceFile');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                showStatus('Please select a file first.', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const csvdata = e.target.result;
+                const rows = csvdata.split('\n').filter(row => row.trim() !== '');
+
+                yearbook.people = rows.map((line, index) => {
+                    const parts = line.split(',').map(p => p.trim().replace(/^["']|["']$/g, ''));
+                    return {
+                        id: parseInt(parts[0]) || index + 1,
+                        firstName: parts[1] || '',
+                        lastName: parts[2] || '',
+                        birthDate: parts[3] || '',
+                        clubs: parts[4] || '',
+                        address: parts[5] || '',
+                        whereTo: parts[6] || '',
+                        picture: parts[7] || 'default.jpg',
+                        type: parts[8] || 'classmate'
+                    };
+                });
+
+                showStatus(`Successfully loaded ${yearbook.people.length} records!`, 'success');
+                document.getElementById('fileLoaderSection').classList.add('hidden');
+            };
+
+            reader.onerror = function () {
+                showStatus('Error reading file.', 'error');
+            };
+
+            reader.readAsText(file);
+        }
+
+        // Load sample data
+        function loadSampleData() {
+            yearbook.people = [
+                {
+                    id: 1,
+                    firstName: "Yejun",
+                    lastName: "Nam",
+                    birthDate: "2001-09-12",
+                    clubs: "Swimming, Student Council, Ye-line",
+                    address: "Pixel City, Leadership Avenue 01, Asterum",
+                    whereTo: "SparkHub Events",
+                    picture: "1.jpeg",
+                    type: "classmate"
+                },
+                {
+                    id: 2,
+                    firstName: "Noah",
+                    lastName: "Han",
+                    birthDate: "2001-02-10",
+                    clubs: "Composing, Weight Training, No-line",
+                    address: "1 NovaCare Home, Dream District, Asterum",
+                    whereTo: "Sunwave FM Studio",
+                    picture: "2.jpeg",
+                    type: "teacher"
+                },
+                {
+                    id: 3,
+                    firstName: "Bambi",
+                    lastName: "Chae",
+                    birthDate: "1955-10-28",
+                    clubs: "Dancing, Movie, Bam-line",
+                    address: "Cloud Lane 777, Fantasy Town, Asterum",
+                    whereTo: "DreamCanvas Studio",
+                    picture: "3.jpeg",
+                    type: "classmate"
+                },
+                {
+                    id: 4,
+                    firstName: "Eunho",
+                    lastName: "Do",
+                    birthDate: "2003-05-24",
+                    clubs: "Mukbang, Composing, English, No-line",
+                    address: "Energy Road 99, Playverse, Asterum",
+                    whereTo: "PlayVerse Entertainment HQ",
+                    picture: "4.jpeg",
+                    type: "classmate"
+                },
+                {
+                    id: 5,
+                    firstName: "Hamin",
+                    lastName: "Yu",
+                    birthDate: "1999-11-01",
+                    clubs: "Taekwondo, Dancing, Gaming, Ye-line",
+                    address: "Coolstone Drive, Digital Realm, Asterum",
+                    whereTo: "Velin Mode Studio",
+                    picture: "5.jpg",
+                    type: "teacher"
+                },
+                {
+                    id: 6,
+                    firstName: "PLLI",
+                    lastName: "_",
+                    birthDate: "2023-06-19",
+                    clubs: "Art, Yearbook",
+                    address: "PLAVE Headquarters, 5 Playverse Avenue, Asterum",
+                    whereTo: "HeartLink Community Space",
+                    picture: "6.jpeg",
+                    type: "classmate"
+                }
+            ];
+            
+            yearbook.comments = [
+                {
+                    name: "Yejun",
+                    text: "Hello, how's everyone? I miss the good old days...",
+                    date: new Date().toISOString()
+                },
+                {
+                    name: "Eunho",
+                    text: "Hello! Do Eunho's flying pose. Fly~",
+                    date: new Date().toISOString()
+                }
+            ];
+            
+            yearbook.friends = [1, 2, 3, 4, 5]; 
+            
+            setTimeout(() => {
+                document.getElementById('fileLoaderSection').classList.add('hidden');
+                document.getElementById('homeView').classList.remove('hidden');
+            }, 1500);
+        }
+
+        // Show status message
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('loadStatus');
+            statusDiv.className = 'status-message status-' + type;
+            statusDiv.textContent = message;
+        }
+
+        // View management with history
+        let viewHistory = [];
+        let currentView = 'home';
+
+        function showView(viewName, addToHistory = true) {
+            const views = ['homeView', 'memoryMapView', 'monthCollectionView', 'profileExplorerView', 'commentsView', 
+                          'memorabiliaView', 'detailView', 'timeCapsuleView', 'userProfileView'];
+            
+            // Add current view to history before switching
+            if (addToHistory && currentView && currentView !== viewName) {
+                viewHistory.push(currentView);
+            }
+            
+            // Update current view
+            currentView = viewName;
+            
+            views.forEach(view => {
+                document.getElementById(view).classList.add('hidden');
+            });
+            
+            if (viewName === 'home') {
+                document.getElementById('homeView').classList.remove('hidden');
+            } else if (viewName === 'memoryMap') {
+                document.getElementById('memoryMapView').classList.remove('hidden');
+            } else if (viewName === 'monthCollection') {
+                document.getElementById('monthCollectionView').classList.remove('hidden');
+            } else if (viewName === 'memorabilia') {
+                document.getElementById('memorabiliaView').classList.remove('hidden');
+            } else if (viewName === 'profileExplorer') {
+                document.getElementById('profileExplorerView').classList.remove('hidden');
+                displayPeople('all');
+            } else if (viewName === 'comments') {
+                document.getElementById('commentsView').classList.remove('hidden');
+                displayComments();
+            } else if (viewName === 'timeCapsule') {
+                document.getElementById('timeCapsuleView').classList.remove('hidden');
+            } else if (viewName === 'userProfile') {
+                document.getElementById('userProfileView').classList.remove('hidden');
+            } else if (viewName === 'detail') {
+                document.getElementById('detailView').classList.remove('hidden');
+            }
+        }
+
+        // Go back to previous view
+        function goBack() {
+            if (viewHistory.length > 0) {
+                const previousView = viewHistory.pop();
+                showView(previousView, false);
+            } else {
+                showView('home', false);
+            }
+        }
+
+        // Display people
+        function displayPeople(filter) {
+            const grid = document.getElementById('peopleGrid');
+            const searchResults = document.getElementById('searchResults');
+            let people = yearbook.people;
+            
+            // Clear search results when filtering
+            searchResults.innerHTML = '';
+            
+            if (filter === 'classmate') {
+                people = people.filter(p => p.type === 'classmate');
+            } else if (filter === 'teacher') {
+                people = people.filter(p => p.type === 'teacher');
+            } else if (filter === 'friend') {
+                people = people.filter(p => yearbook.friends.includes(p.id));
+            } else if (filter !== 'all') {
+                people = people.filter(p => p.type === filter);
+            }
+            
+            // Update people count
+            const countElement = document.getElementById('peopleCount');
+            if (countElement) {
+                countElement.textContent = `${people.length} people found`;
+            }
+            
+            // Update stats
+            updateStats();
+            
+            if (people.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; color: #666; padding: 60px;">No people found in this category.</p>';
+                return;
+            }
+            
+            grid.innerHTML = people.map(person => `
+                <div class="person-card" onclick="showPersonDetail(${person.id})">
+                    <div class="person-card-image-container">
+                        <img src="pics/${person.picture}" alt="${person.firstName} ${person.lastName}" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%23e0d4f7%22 width=%22200%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>No Image</text></svg>'">
+                    </div>
+                    <div class="person-card-info">
+                        <h3>${person.firstName} ${person.lastName}</h3>
+                        <div class="person-type">${person.type === 'teacher' ? 'Teacher' : 'Classmate'}</div>
+                        <div class="person-detail">📍 ${person.whereTo || 'Unknown'}</div>
+                        <div class="person-activity">💜 ${person.clubs ? person.clubs.split(',')[0].trim() : 'No clubs'}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update statistics in sidebar
+        function updateStats() {
+            const classmates = yearbook.people.filter(p => p.type === 'classmate').length;
+            const teachers = yearbook.people.filter(p => p.type === 'teacher').length;
+            const friends = yearbook.friends.length;
+            
+            const statClassmates = document.getElementById('statClassmates');
+            const statTeachers = document.getElementById('statTeachers');
+            const statFriends = document.getElementById('statFriends');
+            
+            if (statClassmates) statClassmates.textContent = classmates;
+            if (statTeachers) statTeachers.textContent = teachers;
+            if (statFriends) statFriends.textContent = friends;
+        }
+
+        // Set active filter
+        function setActiveFilter(button, filter) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            button.classList.add('active');
+            
+            // Filter people
+            displayPeople(filter);
+        }
+
+        // Show person detail
+        function showPersonDetail(personId) {
+            const person = yearbook.people.find(p => p.id === personId);
+            if (!person) return;
+            
+            // Generate a sample quote or use default
+            const quotes = [
+                "Event planner with a passion for creating memorable experiences. Love swimming and exploring new places.",
+                "Dedicated to making every moment count. Always ready for the next adventure!",
+                "Creating memories one event at a time. Life is about the journey, not the destination.",
+                "Passionate about bringing people together and creating unforgettable experiences."
+            ];
+            const quote = quotes[Math.floor(Math.random() * quotes.length)];
+            
+            // Parse clubs into first club for display
+            const primaryClub = person.clubs ? person.clubs.split(',')[0].trim() : 'No clubs';
+            const hobby = person.clubs ? person.clubs.split(',')[1]?.trim() || primaryClub : 'Various activities';
+            
+            // Generate email and phone from name
+            const email = `${person.firstName.toLowerCase()}.${person.lastName.toLowerCase()}@email.com`;
+            const phone = `+1 (555) ${Math.floor(100 + Math.random() * 900)}-${Math.floor(1000 + Math.random() * 9000)}`;
+            
+            // Sample signatures
+            const signatures = [
+                { text: "Stay awesome! - Eunho", emoji: "✏️" },
+                { text: "Keep shining! - Friend", emoji: "⭐" },
+                { text: "Best wishes! - Classmate", emoji: "💫" },
+                { text: "See you soon! - Buddy", emoji: "👋" }
+            ];
+            const signature = signatures[Math.floor(Math.random() * signatures.length)];
+            
+            const content = document.getElementById('detailContent');
+            content.innerHTML = `
+                <!-- Left Card: Profile Info -->
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img src="pics/${person.picture}" alt="${person.firstName} ${person.lastName}"
+                                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22><rect fill=%22%23e0d4f7%22 width=%22150%22 height=%22150%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>No Image</text></svg>'">
+                        </div>
+                        <h2 class="profile-name">${person.firstName} ${person.lastName}</h2>
+                        <div class="profile-role">${person.type === 'teacher' ? 'Teacher' : 'Classmate'}</div>
+                    </div>
+                    
+                    <div class="profile-quote">
+                        "${quote}"
+                    </div>
+                    
+                    <div class="profile-info-section">
+                        <div class="profile-info-item company">
+                            <div class="profile-info-icon">🏢</div>
+                            <div class="profile-info-content">
+                                <div class="profile-info-label">Company</div>
+                                <div class="profile-info-value">${person.whereTo || 'Unknown'}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-info-item hobby">
+                            <div class="profile-info-icon">💜</div>
+                            <div class="profile-info-content">
+                                <div class="profile-info-label">Hobby</div>
+                                <div class="profile-info-value">${hobby}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-info-item location">
+                            <div class="profile-info-icon">📍</div>
+                            <div class="profile-info-content">
+                                <div class="profile-info-label">Location</div>
+                                <div class="profile-info-value">${person.address || 'Seoul, South Korea'}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-info-item birthday">
+                            <div class="profile-info-icon">🎂</div>
+                            <div class="profile-info-content">
+                                <div class="profile-info-label">Birthday</div>
+                                <div class="profile-info-value">${person.birthDate || 'September 12'}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Card: Contact & Timeline -->
+                <div class="profile-card">
+                    <div class="contact-section">
+                        <h3 class="section-title">Contact</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-content">
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">${email}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-content">
+                                <div class="contact-label">Phone</div>
+                                <div class="contact-value">${phone}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="then-now-section">
+                        <h3 class="section-title">Then & Now</h3>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">🌱</div>
+                            <div class="timeline-content">
+                                <div class="timeline-label">THEN</div>
+                                <div class="timeline-text">Dreamed of becoming an event coordinator</div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">🌟</div>
+                            <div class="timeline-content">
+                                <div class="timeline-label">NOW</div>
+                                <div class="timeline-text">${person.whereTo || 'Senior Event Manager at SparkHub Events'}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="signature-section">
+                        <div class="signature-header">
+                            <h3 class="signature-title">Digital Signature</h3>
+                            <button class="write-message-btn" onclick="openMessagePopup('${person.firstName}', '${person.lastName}', ${person.id})">
+                                ✏️ Write Message
+                            </button>
+                        </div>
+                        <div class="signature-label">Their signature:</div>
+                        <div class="signature-content">
+                            <div class="signature-text">${signature.text}</div>
+                            <div class="signature-emoji">${signature.emoji}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Profile Summary -->
+                    <div style="margin-top: 20px;">
+                        <button onclick="generateProfileSummary(${person.id})" style="
+                            width: 100%;
+                            padding: 12px 20px;
+                            border: 2px solid #ec4899;
+                            background: linear-gradient(135deg, #fef3f8 0%, #fef9f3 100%);
+                            color: #ec4899;
+                            border-radius: 12px;
+                            cursor: pointer;
+                            font-size: 0.95em;
+                            font-weight: 600;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 8px;
+                            transition: all 0.3s;
+                        " onmouseover="this.style.background='#ec4899'; this.style.color='white'" onmouseout="this.style.background='linear-gradient(135deg, #fef3f8 0%, #fef9f3 100%)'; this.style.color='#ec4899'">
+                            <span>✨</span>
+                            <span>AI Profile Summary</span>
+                        </button>
+                        <div id="aiSummary-${person.id}" style="display: none; margin-top: 15px; padding: 20px; background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%); border-radius: 12px; border-left: 4px solid #60a5fa;">
+                            <div style="color: #60a5fa; font-weight: 600; font-size: 0.9em; margin-bottom: 8px;">🤖 AI-Generated Summary</div>
+                            <p id="summaryText-${person.id}" style="color: #333; font-size: 0.9em; line-height: 1.6;"></p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            showView('detail');
+        }
+
+        // Search functionality
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const results = document.getElementById('searchResults');
+            const grid = document.getElementById('peopleGrid');
+            const countElement = document.getElementById('peopleCount');
+            
+            if (query.length === 0) {
+                results.innerHTML = '';
+                grid.style.display = 'grid';
+                displayPeople('all');
+                return;
+            }
+            
+            // Hide main grid when searching
+            grid.style.display = 'none';
+            
+            const filtered = yearbook.people.filter(person => 
+                person.firstName.toLowerCase().includes(query) ||
+                person.lastName.toLowerCase().includes(query) ||
+                (person.clubs && person.clubs.toLowerCase().includes(query)) ||
+                (person.address && person.address.toLowerCase().includes(query)) ||
+                (person.whereTo && person.whereTo.toLowerCase().includes(query))
+            );
+            
+            if (countElement) {
+                countElement.textContent = `${filtered.length} people found`;
+            }
+            
+            if (filtered.length === 0) {
+                results.innerHTML = '<p style="text-align: center; color: #666; padding: 60px;">No results found</p>';
+                return;
+            }
+            
+            results.innerHTML = filtered.map(person => `
+                <div class="person-card" onclick="showPersonDetail(${person.id})">
+                    <div class="person-card-image-container">
+                        <img src="pics/${person.picture}" alt="${person.firstName} ${person.lastName}"
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%23e0d4f7%22 width=%22200%22 height=%22200%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>No Image</text></svg>'">
+                    </div>
+                    <div class="person-card-info">
+                        <h3>${person.firstName} ${person.lastName}</h3>
+                        <div class="person-type">${person.type === 'teacher' ? 'Teacher' : 'Classmate'}</div>
+                        <div class="person-detail">📍 ${person.whereTo || 'Unknown'}</div>
+                        <div class="person-activity">💜 ${person.clubs ? person.clubs.split(',')[0].trim() : 'No clubs'}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Time Capsule Functions
+        function openTimeCapsule(year) {
+            const modal = document.getElementById('timeCapsuleModal');
+            const content = document.getElementById('capsuleContent');
+            
+            // Sample messages for different years
+            const messages = {
+                '2020': {
+                    from: 'Me',
+                    date: 'January 1, 2020',
+                    message: 'Dear future self, I hope you\'re doing well! Remember to always chase your dreams and never give up. The journey we started together continues. Stay strong! 💪✨',
+                    video: null
+                }
+            };
+            
+            const capsule = messages[year];
+            
+            if (capsule) {
+                content.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <div style="font-size: 4em; margin-bottom: 20px;">✉️</div>
+                        <h2 style="
+                            background: linear-gradient(90deg, #c27aff, #fb64b6);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                            font-size: 2em;
+                            font-weight: 700;
+                            margin-bottom: 10px;
+                        ">Time Capsule ${year}</h2>
+                        <p style="color: #999; font-size: 0.95em;">From: ${capsule.from} • ${capsule.date}</p>
+                    </div>
+                    <div style="
+                        background: linear-gradient(135deg, #f3e8ff 0%, #fce7f3 100%);
+                        padding: 30px;
+                        border-radius: 15px;
+                        margin-bottom: 20px;
+                    ">
+                        <p style="
+                            color: #333;
+                            font-size: 1.1em;
+                            line-height: 1.8;
+                            text-align: center;
+                        ">${capsule.message}</p>
+                    </div>
+                `;
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeTimeCapsule() {
+            document.getElementById('timeCapsuleModal').style.display = 'none';
+        }
+
+        // Comments functionality
+        function displayComments() {
+            const list = document.getElementById('commentsList');
+            list.innerHTML = yearbook.comments.map(comment => `
+                <div class="comment">
+                    <div class="comment-author">${comment.name}</div>
+                    <div class="comment-text">${comment.text}</div>
+                    <div class="comment-date">${new Date(comment.date).toLocaleString()}</div>
+                </div>
+            `).join('');
+        }
+
+        function postComment() {
+            const nameInput = document.getElementById('commentName');
+            const textInput = document.getElementById('commentText');
+            const name = nameInput.value.trim();
+            const text = textInput.value.trim();
+            
+            // Validation with visual feedback
+            if (!name) {
+                nameInput.style.borderColor = '#ef4444';
+                nameInput.focus();
+                setTimeout(() => {
+                    nameInput.style.borderColor = '#ddd';
+                }, 2000);
+                alert('Please enter your name');
+                return;
+            }
+            
+            if (!text) {
+                textInput.style.borderColor = '#ef4444';
+                textInput.focus();
+                setTimeout(() => {
+                    textInput.style.borderColor = '#ddd';
+                }, 2000);
+                alert('Please enter your message');
+                return;
+            }
+            
+            if (text.length < 5) {
+                textInput.style.borderColor = '#f59e0b';
+                alert('Please write a longer message (at least 5 characters)');
+                setTimeout(() => {
+                    textInput.style.borderColor = '#ddd';
+                }, 2000);
+                return;
+            }
+            
+            yearbook.comments.unshift({
+                name: name,
+                text: text,
+                date: new Date().toISOString()
+            });
+            
+            // Save to localStorage
+            try {
+                localStorage.setItem('yearbook_comments', JSON.stringify(yearbook.comments));
+            } catch (e) {
+                console.log('Could not save to localStorage:', e);
+            }
+            
+            // Clear form
+            nameInput.value = '';
+            textInput.value = '';
+            
+            // Show success feedback
+            nameInput.style.borderColor = '#10b981';
+            textInput.style.borderColor = '#10b981';
+            setTimeout(() => {
+                nameInput.style.borderColor = '#ddd';
+                textInput.style.borderColor = '#ddd';
+            }, 1000);
+            
+            // Update display
+            displayComments();
+            
+            // Show success message
+            alert('Comment posted successfully!');
+        }
+
+        // Simple login system
+        function checkLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const errorMsg = document.getElementById('loginError');
+
+            // Login credentials
+            const validUsername = "plli";
+            const validPassword = "plave2025";
+
+            if (username === validUsername && password === validPassword) {
+                // Hide login screen
+                document.getElementById('loginScreen').style.display = 'none';
+                // Show the main site
+                //document.getElementById('frontPage').classList.remove('hidden');
+                document.getElementById('frontPage').style.display = 'flex';
+            } else {
+                errorMsg.style.display = 'block';
+                errorMsg.textContent = "Invalid username or password.";
+            }
+        }
+
+        // Navigation function - goes from front page to main yearbook
+        function goToLogin() {
+            // Hide front page
+            //document.getElementById('frontPage').classList.add('hidden');
+            document.getElementById('frontPage').style.display = 'none';
+            
+            // Show main content
+            document.getElementById('mainContent').classList.remove('hidden');
+            
+            // Load sample data automatically
+            loadSampleData();
+            
+            // Show home view
+            document.getElementById('homeView').classList.remove('hidden');
+        }
+
+        // Month Collection Data and Functions
+        let currentMonthIndex = 0;
+        
+        const monthCollections = [
+            {
+                name: 'January',
+                photos: [
+                    { src: 'pics/3.2.jpeg', caption: 'Bamby\'s Solo pic' },
+                    { src: 'pics/student.jpg', caption: '마지막 수업!' },
+                    { src: 'pics/band.jpg', caption: 'Fav Band' },
+                    { src: 'pics/kindergarten.jpg', caption: 'Roleplay Activity' }
+                ]
+            },
+            {
+                name: 'February',
+                photos: [
+                    { src: 'pics/now.png', caption: 'Graduation Day' },
+                    { src: 'pics/then.webp', caption: 'High School 시절' },
+                    { src: 'pics/now.jpg', caption: 'Hangout After School' },
+                    { src: 'pics/_2.webp', caption: 'End of Semester Party' }
+                ]
+            },
+            {
+                name: 'March',
+                photos: [
+                    { src: 'pics/_10.webp', caption: 'Nature Walk' },
+                    { src: 'pics/then.jpg', caption: 'Group Study' },
+                    { src: 'pics/adventure.jpg', caption: 'Outdoor Adventure' },
+                    { src: 'pics/6.jpeg', caption: 'Our PLLI\'s' }
+                ]
+            },
+            {
+                name: 'April',
+                photos: [
+                    { src: 'pics/retreat.jpg', caption: 'Spring Retreat' },
+                    { src: 'pics/plli.jpg', caption: '\<3' },
+                    { src: 'pics/student.jpg', caption: 'Sports Day' },
+                    { src: 'pics/3.1.jpeg', caption: '또 밤비네 음...' }
+                ]
+            }
+        ];
+
+        function showMonthCollection(monthName, monthIndex) {
+            currentMonthIndex = monthIndex;
+            
+            // Use showView to properly track history
+            showView('monthCollection');
+            
+            // Update the display
+            updateMonthCollectionDisplay();
+        }
+
+        function updateMonthCollectionDisplay() {
+            const month = monthCollections[currentMonthIndex];
+            
+            // Update title and subtitle
+            document.getElementById('monthCollectionSubtitle').textContent = `${month.name} Collection`;
+            
+            // Update photo grid
+            const grid = document.getElementById('monthPhotosGrid');
+            grid.innerHTML = month.photos.map((photo, index) => `
+                <div style="
+                    background: white;
+                    border-radius: 15px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                    transition: all 0.3s;
+                    cursor: pointer;
+                    position: relative;
+                " onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.1)'">
+                    <img src="${photo.src}" alt="${photo.caption}" style="
+                        width: 100%;
+                        height: 300px;
+                        object-fit: cover;
+                    " onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22><rect fill=%22%23f0f0f0%22 width=%22300%22 height=%22300%22/><text x=%2250%%22 y=%2250%%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>Photo ${index + 1}</text></svg>'">
+                    <div style="padding: 20px;">
+                        <p id="caption-${currentMonthIndex}-${index}" style="
+                            color: #333;
+                            font-size: 1em;
+                            font-weight: 500;
+                            margin: 0 0 10px 0;
+                        ">${photo.caption}</p>
+                        <button onclick="enhanceCaption(${currentMonthIndex}, ${index}, '${photo.src.replace(/'/g, "\\'")}', '${photo.caption.replace(/'/g, "\\'")}'); event.stopPropagation();" style="
+                            padding: 6px 12px;
+                            border: 1px solid #60a5fa;
+                            background: white;
+                            color: #60a5fa;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            font-size: 0.8em;
+                            font-weight: 600;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 5px;
+                            transition: all 0.3s;
+                        " onmouseover="this.style.background='#60a5fa'; this.style.color='white'" onmouseout="this.style.background='white'; this.style.color='#60a5fa'">
+                            ✨ AI Enhance
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Update pagination dots
+            updateMonthDots();
+        }
+
+        function updateMonthDots() {
+            const totalMonths = monthCollections.length;
+            for (let i = 1; i <= 2; i++) {
+                const dot = document.getElementById(`monthDot${i}`);
+                if (dot) {
+                    if (i - 1 === currentMonthIndex) {
+                        dot.style.width = '30px';
+                        dot.style.background = 'linear-gradient(135deg, #c27aff 0%, #fb64b6 100%)';
+                    } else {
+                        dot.style.width = '8px';
+                        dot.style.background = '#e5e7eb';
+                    }
+                }
+            }
+        }
+
+        function navigateMonth(direction) {
+            currentMonthIndex += direction;
+            
+            // Wrap around
+            if (currentMonthIndex < 0) {
+                currentMonthIndex = monthCollections.length - 1;
+            } else if (currentMonthIndex >= monthCollections.length) {
+                currentMonthIndex = 0;
+            }
+            
+            updateMonthCollectionDisplay();
+        }
+
+        function previousMonth() {
+            alert('Previous month view - Coming soon!');
+        }
+
+        function nextMonth() {
+            alert('Next month view - Coming soon!');
+        }
+
+        // Message Popup Functions
+        let currentMessageRecipient = { firstName: '', lastName: '', id: null };
+
+        function openMessagePopup(firstName, lastName, personId) {
+            currentMessageRecipient = { firstName, lastName, id: personId };
+            
+            const modal = document.getElementById('messageModal');
+            const recipientText = document.getElementById('messageRecipient');
+            
+            recipientText.textContent = `To: ${firstName} ${lastName}`;
+            
+            // Clear previous message
+            document.getElementById('messageName').value = '';
+            document.getElementById('messageText').value = '';
+            document.getElementById('messageSuccess').style.display = 'none';
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeMessagePopup() {
+            const modal = document.getElementById('messageModal');
+            modal.style.display = 'none';
+            currentMessageRecipient = { firstName: '', lastName: '', id: null };
+        }
+
+        // AI-Powered Features (Simulated)
+        
+        // AI Message Suggestion Generator
+        function getAISuggestion() {
+            const recipient = currentMessageRecipient.firstName;
+            const suggestions = [
+                `Dear ${recipient}, thank you for all the amazing memories we've shared. Your friendship has meant the world to me! 🌟`,
+                `${recipient}! Can't believe it's time to say goodbye. Wishing you all the best in your next chapter! Keep shining! ✨`,
+                `Hey ${recipient}! Thanks for making every day brighter. Let's stay in touch and create more memories together! 💜`,
+                `To ${recipient}, you've been an incredible friend. May your future be filled with success and happiness! 🎓`,
+                `${recipient}, our journey together has been unforgettable. Here's to new beginnings and lasting friendships! 🌈`,
+                `Dear ${recipient}, thank you for being you. Your kindness and energy will be missed. Stay awesome! 🚀`
+            ];
+            
+            const randomSuggestion = suggestions[Math.floor(Math.random() * suggestions.length)];
+            document.getElementById('messageText').value = randomSuggestion;
+            
+            // Add a subtle animation
+            const textarea = document.getElementById('messageText');
+            textarea.style.background = 'linear-gradient(135deg, #faf5ff 0%, #fef3f8 100%)';
+            setTimeout(() => {
+                textarea.style.background = 'white';
+            }, 1000);
+        }
+
+        // Memory Weaver - AI Narrative Generator
+        function openMemoryWeaver() {
+            document.getElementById('memoryWeaverModal').style.display = 'flex';
+            document.getElementById('narrativeResult').style.display = 'none';
+            document.getElementById('memoryTheme').value = '';
+        }
+
+        function closeMemoryWeaver() {
+            document.getElementById('memoryWeaverModal').style.display = 'none';
+        }
+
+        function generateMemoryNarrative() {
+            const theme = document.getElementById('memoryTheme').value;
+            
+            if (!theme) {
+                alert('Please select a memory theme first!');
+                return;
+            }
+            
+            const narratives = {
+                graduation: {
+                    title: "The Graduation Journey 🎓",
+                    text: "As you stand at the threshold of a new chapter, remember the countless late-night study sessions, the laughter shared over cafeteria meals, and the bonds forged through challenges overcome together. Your journey from nervous freshmen to confident graduates has been nothing short of remarkable. Each class, each project, each moment of doubt conquered has shaped you into the person you are today. The friendships you've built here will last a lifetime, and the memories you've created will forever warm your heart. As you turn your tassel and step into the future, carry with you the lessons learned, the friendships cherished, and the dreams that drove you forward. This isn't an ending—it's a beautiful beginning."
+                },
+                friendship: {
+                    title: "Bonds That Last Forever 💜",
+                    text: "The friendships formed within these walls are the true treasures of your college journey. From the first awkward introductions to the deep, meaningful conversations at 3 AM, you've built connections that transcend time and distance. These are the people who celebrated your victories, supported you through failures, and made ordinary moments extraordinary. The inside jokes, the spontaneous adventures, the shoulder to cry on, and the hand to hold—these bonds have defined your experience here. Remember the group study sessions that turned into therapy sessions, the late-night food runs, and the dreams you shared together. These friendships aren't just memories; they're a part of who you've become. Distance may separate you, but the bonds you've formed are unbreakable."
+                },
+                growth: {
+                    title: "The Journey of Growth 🌱",
+                    text: "Look how far you've come. The person who walked through these doors years ago barely resembles the confident individual you are today. You've learned not just from textbooks, but from failures, challenges, and moments of self-discovery. Each obstacle you faced taught you resilience; each success built your confidence. You've discovered passions you never knew existed, developed skills you never thought possible, and overcome fears that once seemed insurmountable. The growth you've experienced here extends far beyond academics—you've grown in empathy, understanding, and self-awareness. You've learned to embrace your authentic self, to stand up for what you believe in, and to pursue your dreams fearlessly. This transformation is your greatest achievement, and it will continue to shape your future in ways you can't yet imagine."
+                },
+                adventures: {
+                    title: "Campus Adventures & Memories 🎒",
+                    text: "Every corner of this campus holds a story, every building a memory. Remember the excitement of campus festivals, the thrill of joining clubs, and the joy of discovering hidden spots that became your sanctuary. From the library where you spent countless hours to the café where friendships bloomed over coffee, this place has been your playground for growth and discovery. The field trips, the cultural events, the sports victories, and even the defeats—each adventure added a colorful thread to the tapestry of your college experience. You've explored not just the campus, but yourselves, pushing boundaries and embracing new experiences. These adventures have taught you to be bold, curious, and open to the unexpected. The memories you've created here will serve as a compass, reminding you to always seek adventure and embrace life's journey."
+                },
+                challenges: {
+                    title: "Strength Through Challenges 💪",
+                    text: "The most beautiful part of your journey has been watching you rise every time you fell. The exams that seemed impossible, the projects that pushed you to your limits, the personal struggles that tested your resolve—you conquered them all. You've learned that failure isn't the opposite of success; it's a stepping stone toward it. Each challenge you faced taught you something valuable: resilience, determination, and the power of perseverance. You've discovered an inner strength you didn't know you possessed. The late nights, the moments of doubt, the tears shed in frustration—they weren't signs of weakness, but proof of your commitment and courage. You've learned to ask for help, to support others, and to grow through adversity. These challenges have forged you into a stronger, wiser, more compassionate person. As you move forward, remember that you have the strength to overcome anything life throws your way."
+                }
+            };
+            
+            const narrative = narratives[theme];
+            document.getElementById('narrativeTitle').textContent = narrative.title;
+            document.getElementById('narrativeText').textContent = narrative.text;
+            document.getElementById('narrativeResult').style.display = 'block';
+            
+            // Smooth scroll to result
+            document.getElementById('narrativeResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // AI Profile Summary Generator
+        function generateProfileSummary(personId) {
+            const person = yearbook.people.find(p => p.id === personId);
+            if (!person) return;
+            
+            const summaryDiv = document.getElementById(`aiSummary-${personId}`);
+            const summaryText = document.getElementById(`summaryText-${personId}`);
+            
+            // Show with animation
+            summaryDiv.style.display = 'block';
+            summaryText.textContent = 'Generating AI summary...';
+            
+            // Simulate AI processing delay
+            setTimeout(() => {
+                const summaries = {
+                    1: `${person.firstName} is a natural-born leader who excels in bringing people together. Known for their dedication to the Swimming Club and Student Council, they've demonstrated exceptional organizational skills and empathy. Their journey to SparkHub Events showcases their passion for creating meaningful experiences. Friends describe them as dependable, inspiring, and always ready to lend a helping hand.`,
+                    2: `${person.firstName} is a creative soul with a gift for music and composition. Their time in the Weight Training club shows their dedication to personal growth and discipline. Moving to Sunwave FM Studio reflects their passion for audio arts and storytelling. Known for their thoughtful nature and artistic vision, they have a unique ability to connect with others through their work.`,
+                    3: `${person.firstName} is a dynamic performer whose energy lights up every room. As a main dancer with a love for movies, they blend artistic expression with entertainment perfectly. Their move to DreamCanvas Studio shows their commitment to creative excellence. Friends admire their enthusiasm, creativity, and ability to make every moment memorable.`,
+                    4: `${person.firstName} combines sharp wit with musical talent, making them a standout performer. Their interests in mukbang, composing, and English demonstrate their diverse passions. Joining PlayVerse Entertainment HQ highlights their ambition in the entertainment industry. Known for their humor and authenticity, they create genuine connections wherever they go.`,
+                    5: `${person.firstName} is a multi-talented individual who excels in both physical and creative pursuits. From Taekwondo to dancing and gaming, they embody versatility and determination. Their move to Velin Mode Studio showcases their eye for style and innovation. Friends appreciate their cool demeanor, competitive spirit, and unwavering loyalty.`,
+                    6: `PLLI represents the heart and soul of the community - a creative force dedicated to bringing people together. Active in Art and the Yearbook club, they've helped preserve countless memories and stories. Based at HeartLink Community Space, they continue to foster connections and celebrate shared experiences. Known for their warmth, creativity, and passion for community building.`
+                };
+                
+                summaryText.textContent = summaries[personId] || `${person.firstName} is a valued member of our community with diverse interests in ${person.clubs}. Their journey continues at ${person.whereTo}, where they pursue their passions with dedication and enthusiasm.`;
+                
+                // Smooth scroll to summary
+                summaryDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 1500);
+        }
+
+        // AI Caption Enhancement for Photos
+        function enhanceCaption(monthIndex, photoIndex, photoSrc, originalCaption) {
+            const captionElement = document.getElementById(`caption-${monthIndex}-${photoIndex}`);
+            
+            // Show loading state
+            captionElement.style.opacity = '0.5';
+            captionElement.textContent = '✨ AI is enhancing caption...';
+            
+            setTimeout(() => {
+                const enhancedCaptions = {
+                    'pics/3.2.jpeg': 'A beautiful solo moment captured with Bamby - their radiant smile and confident pose showcase the personal growth journey throughout the year. This candid shot perfectly encapsulates their vibrant personality.',
+                    'pics/student.jpg': 'The final lesson - a bittersweet moment marking the end of an era. Students gathered one last time in the classroom where countless memories were made, knowledge was shared, and friendships were forged.',
+                    'pics/band.jpg': 'Our favorite band performance that brought the whole campus together! The energy, the music, and the collective joy of that evening will forever be etched in our hearts.',
+                    'pics/kindergarten.jpg': 'Roleplay activity day where creativity knew no bounds. Students embraced their characters, creating an immersive experience that reminded us why imagination is essential to learning.',
+                    'pics/now.png': 'Graduation Day 2026 - The culmination of years of hard work, late nights, and unwavering determination. As caps flew in the air, so did our dreams, ready to take flight.',
+                    'pics/then.webp': 'Throwback to high school days (시절) - Where it all began. Looking back at these younger faces reminds us how far we\'ve come and how much we\'ve grown together.',
+                    'pics/now.jpg': 'Post-school hangout sessions that made every day special. These spontaneous gatherings after class were where real conversations happened and lasting bonds were formed.',
+                    'pics/_2.webp': 'End of Semester Party - Celebrating milestones, achievements, and surviving another semester together. The joy and relief on everyone\'s faces tell the whole story.',
+                    'pics/_10.webp': 'Nature walk adventure that gave us a break from campus life. Breathing fresh air, surrounded by greenery, reminded us to appreciate the simple moments.',
+                    'pics/then.jpg': 'Group study sessions that turned into life coaching sessions. Sometimes the best learning happened not from books, but from supporting each other through challenges.',
+                    'pics/adventure.jpg': 'Outdoor adventure day where we pushed our limits and discovered new strengths. Team building at its finest, creating memories that will last forever.',
+                    'pics/6.jpeg': 'Our beloved PLLI - the heart that keeps us all connected. Always there with a smile, bridging communities and making everyone feel at home.',
+                    'pics/retreat.jpg': 'Spring Retreat 2026 - A transformative weekend away from campus. In the quiet of nature, we found clarity, connection, and renewed purpose.',
+                    'pics/plli.jpg': 'Pure joy captured in a single frame <3 - This candid moment represents everything we love about our community: authentic, warm, and full of heart.',
+                    'pics/3.1.jpeg': '또 밤비네 음... - Bamby at it again! Their signature charm never fails to bring smiles and laughter to everyone around them.'
+                };
+                
+                const enhancedCaption = enhancedCaptions[photoSrc] || `${originalCaption} - A cherished memory from our time together, capturing the essence of friendship, growth, and shared experiences that define our journey.`;
+                
+                captionElement.textContent = enhancedCaption;
+                captionElement.style.opacity = '1';
+                captionElement.style.background = 'linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%)';
+                captionElement.style.padding = '12px';
+                captionElement.style.borderRadius = '8px';
+                captionElement.style.borderLeft = '3px solid #60a5fa';
+            }, 1200);
+        }
+
+        function sendMessage() {
+            const nameInput = document.getElementById('messageName');
+            const textInput = document.getElementById('messageText');
+            const name = nameInput.value.trim();
+            const text = textInput.value.trim();
+            const successDiv = document.getElementById('messageSuccess');
+            
+            // Validation with visual feedback
+            if (!name) {
+                nameInput.style.borderColor = '#ef4444';
+                nameInput.focus();
+                setTimeout(() => {
+                    nameInput.style.borderColor = '#e5e7eb';
+                }, 2000);
+                alert('Please enter your name');
+                return;
+            }
+            
+            if (!text) {
+                textInput.style.borderColor = '#ef4444';
+                textInput.focus();
+                setTimeout(() => {
+                    textInput.style.borderColor = '#e5e7eb';
+                }, 2000);
+                alert('Please enter a message');
+                return;
+            }
+            
+            if (text.length < 10) {
+                textInput.style.borderColor = '#f59e0b';
+                alert('Please write a longer message (at least 10 characters)');
+                setTimeout(() => {
+                    textInput.style.borderColor = '#e5e7eb';
+                }, 2000);
+                return;
+            }
+            
+            // Store message in yearbook data
+            if (!yearbook.messages) {
+                yearbook.messages = [];
+            }
+            
+            yearbook.messages.push({
+                from: name,
+                to: `${currentMessageRecipient.firstName} ${currentMessageRecipient.lastName}`,
+                recipientId: currentMessageRecipient.id,
+                message: text,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Show success message
+            successDiv.style.display = 'block';
+            
+            console.log('Message sent:', yearbook.messages[yearbook.messages.length - 1]);
+            
+            // Clear form after a delay
+            setTimeout(() => {
+                closeMessagePopup();
+                successDiv.style.display = 'none';
+            }, 1500);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const messageModal = document.getElementById('messageModal');
+            const timeCapsuleModal = document.getElementById('timeCapsuleModal');
+            const memoryWeaverModal = document.getElementById('memoryWeaverModal');
+            
+            if (event.target === messageModal) {
+                closeMessagePopup();
+            }
+            if (event.target === timeCapsuleModal) {
+                closeTimeCapsule();
+            }
+            if (event.target === memoryWeaverModal) {
+                closeMemoryWeaver();
+            }
+        }
+
+        // Keyboard shortcuts for better UX
+        document.addEventListener('keydown', function(event) {
+            // ESC key closes modals
+            if (event.key === 'Escape') {
+                const messageModal = document.getElementById('messageModal');
+                const timeCapsuleModal = document.getElementById('timeCapsuleModal');
+                const memoryWeaverModal = document.getElementById('memoryWeaverModal');
+                
+                if (messageModal.style.display === 'flex') {
+                    closeMessagePopup();
+                } else if (timeCapsuleModal.style.display === 'flex') {
+                    closeTimeCapsule();
+                } else if (memoryWeaverModal.style.display === 'flex') {
+                    closeMemoryWeaver();
+                }
+            }
+            
+            // Ctrl/Cmd + K for search (in Profile Explorer)
+            if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+                event.preventDefault();
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput && !searchInput.classList.contains('hidden')) {
+                    searchInput.focus();
+                }
+            }
+        });
+
+        // Initialize: Load sample data on page load
+        window.addEventListener('load', function() {
+            console.log('Yearbook loaded successfully!');
+            console.log('AI Features enabled: Memory Weaver, AI Suggestions, AI Profile Summary, AI Caption Enhancement');
+        });
+
+        // Toggle user menu
+        function toggleUserMenu() {
+            const menu = document.getElementById('userMenu');
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
+
+        // Close user menu when clicking outside
+        window.addEventListener('click', function(e) {
+            const userIcon = e.target.closest('[onclick*="toggleUserMenu"]');
+            const userMenu = document.getElementById('userMenu');
+            
+            if (!userIcon && userMenu && !userMenu.contains(e.target)) {
+                userMenu.style.display = 'none';
+            }
+        });
+
+        // Logout function
+        function logout() {
+            // Show confirmation dialog
+            const confirmLogout = confirm('Are you sure you want to logout?');
+            
+            if (confirmLogout) {
+                // Hide all content
+                document.getElementById('mainContent').classList.add('hidden');
+                document.getElementById('frontPage').style.display = 'none';
+                
+                // Reset to login screen
+                document.getElementById('loginScreen').style.display = 'flex';
+                
+                // Clear login form
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('loginError').style.display = 'none';
+                
+                // Reset to home view for next login
+                const views = ['homeView', 'memoryMapView', 'profileExplorerView', 'commentsView', 
+                            'memorabiliaView', 'detailView', 'timeCapsuleView', 'userProfileView'];
+                views.forEach(view => {
+                    document.getElementById(view).classList.add('hidden');
+                });
+            }
+        }
+
+    </script>
+</body>
+</html>
